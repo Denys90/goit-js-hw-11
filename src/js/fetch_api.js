@@ -27,6 +27,7 @@ function downloadMore(page) {
         observer.observe(refs.guard);
       }
     });
+    console.log(responce);
     return responce;
   } catch (error) {
     Notiflix.Notify.failure('Щось пішло не так в "downloadMore"');

@@ -16,7 +16,7 @@ async function onSubmit(e) {
 
   try {
     const imagesData = await fetchData(searchQuery);
-    console.log(imagesData);
+
     if (imagesData.hits.length > 0) {
       refs.gallery.insertAdjacentHTML(
         'beforeend',
