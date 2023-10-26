@@ -1,0 +1,120 @@
+*,
+*::befor,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  background-color: #fff;
+
+  margin: 0 auto;
+  padding: 0;
+}
+// <------------------------------------------------------->
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  margin: 0;
+  list-style-type: none;
+  background-color: rgb(255, 255, 255);
+  gap: 20px 10px;
+}
+
+.card {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: block;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 2px 1px 10px -1px #000000;
+  overflow: hidden;
+}
+
+.card__img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+
+  transition: all 0.4s ease;
+}
+
+.card:hover .card__img {
+  transform: scale(1.05);
+}
+
+.card__info {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+.card__info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(181, 180, 184);
+}
+
+.card__info-svg {
+  width: 20px;
+  height: 20px;
+}
+.card__info-item:hover {
+  fill: #282222;
+}
+// <-------------------------------------------
+.container {
+  background-color: rgb(10, 55, 139);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.search-form {
+  border: 1px solid blue;
+
+  display: flex;
+  padding: 0 10px 0 20px;
+  width: 260px;
+
+  height: 35px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.search-form__text {
+  border: none;
+  width: 200px;
+  outline: none;
+  font-size: 16px;
+  padding-right: 10px;
+  background-color: transparent;
+}
+
+.search-form__btn {
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.search-form__png {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(10, 55, 139);
+}
