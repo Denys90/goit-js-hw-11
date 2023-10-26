@@ -42,12 +42,20 @@ const options = {
   root: null,
   rootMargin: '300px',
 };
-
 const observer = new IntersectionObserver(heandlerLoadMore, options);
 
+console.log(observer);
 //<------------------------------------------------------------
-function heandlerLoadMore(entries, observer) {
+let page = 1;
+async function heandlerLoadMore(entries, observer) {
   entries.forEach(entry => {
-    console.log(entry);
+    if (entry.isIntersecting) {
+      page += 1;
+      downloadMore(page).then(date => {
+        refs.gallery.insertAdjacentHTML('beforeend', renderCards(date.hits));
+      });
+    }
   });
 }
+
+observer.observe(guard);

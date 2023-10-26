@@ -16,18 +16,13 @@ async function fetchData(searchQuery) {
   }
 }
 //<------------------------------------------------------------
-function downloadMore(page) {
+function downloadMore(page = 1) {
+  const guard = document.querySelector('.js-guard');
   try {
-    const fetch = axios.get(
+    const responce = axios.get(
       `${URL}?key=${MY_KEY}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
     );
-    const responce = fetch().then(data => {
-      refs.gallery.insertAdjacentHTML('beforeend', renderCards(date.hits));
-      if (data.page < data.totalHits) {
-        observer.observe(refs.guard);
-      }
-    });
-    console.log(responce);
+
     return responce;
   } catch (error) {
     Notiflix.Notify.failure('Щось пішло не так в "downloadMore"');
