@@ -20,11 +20,7 @@ function downloadMore(page) {
     const fetch = axios.get(
       `${URL}?key=${MY_KEY}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
     );
-    fetch().then(res => {
-      if (responce.page < responce.totalHits) {
-        observer.observe(refs.gallery);
-      }
-    });
+    fetch(renderCards(imagesData.hits));
   } catch (error) {
     console.log(fetch.status);
     Notiflix.Notify.failure('Щось пішло не так в "downloadMore"');

@@ -39,18 +39,9 @@ const options = {
   root: null,
   rootMargin: '300px',
 };
-const observer = new IntersectionObserver(hendlerLoadMore, options);
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {});
+}, options);
 
 //<------------------------------------------------------------
-function hendlerLoadMore(entries, observe) {
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        page++;
-        downloadMore(page);
-      }
-    });
-  };
-}
-
-observer.observe(refs.gallery);
