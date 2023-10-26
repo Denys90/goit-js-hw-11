@@ -1,5 +1,5 @@
 import refs from './refs';
-import renderCards from './create_markup';
+import renderCards from './renderCards';
 import { fetchData, downloadMore } from './fetch_api';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
@@ -46,26 +46,12 @@ const observer = new IntersectionObserver(heandlerLoadMore, options);
 
 console.log(observer);
 //<------------------------------------------------------------
-let page = 1;
-async function heandlerLoadMore(entries, observer) {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      page += 1;
-      downloadMore(page).then(date => {
-        refs.gallery.insertAdjacentHTML('beforeend', renderCards(date.hits));
-      });
-    }
-  });
-}
 
-observer.observe(guard);
-async function heandlerLoadMore(entries, observer) {
+function heandlerLoadMore(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      page += 1;
-      downloadMore(page).then(date => {
-        refs.gallery.insertAdjacentHTML('beforeend', renderCards(date.hits));
-      });
+      downloadMore();
     }
   });
 }
+observer.observe(guard);
