@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import refs from './refs';
 //<------------------------------------------------------------
 const MY_KEY = '40227453-3557d8d2139416ae0b447ea7a';
 const URL = 'https://pixabay.com/api/';
@@ -20,9 +21,14 @@ function downloadMore(page) {
     const fetch = axios.get(
       `${URL}?key=${MY_KEY}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
     );
-    fetch(renderCards(imagesData.hits));
+    const responce = fetch().then(data => {
+      refs.gallery.insertAdjacentHTML('beforeend', renderCards(date.hits));
+      if (data.page < data.totalHits) {
+        observer.observe(refs.guard);
+      }
+    });
+    return responce;
   } catch (error) {
-    console.log(fetch.status);
     Notiflix.Notify.failure('Щось пішло не так в "downloadMore"');
   }
 }

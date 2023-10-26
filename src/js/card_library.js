@@ -18,7 +18,10 @@ async function onSubmit(e) {
     const imagesData = await fetchData(searchQuery);
     console.log(imagesData);
     if (imagesData.hits.length > 0) {
-      renderCards(imagesData.hits);
+      refs.gallery.insertAdjacentHTML(
+        'beforeend',
+        renderCards(imagesData.hits)
+      );
 
       Notiflix.Notify.info(`Hooray! We found ${imagesData.total} images.☝️`);
 
@@ -34,14 +37,17 @@ async function onSubmit(e) {
 
 //<------------------------------------------------------------
 const guard = document.querySelector('.js-guard');
-let page = 1;
+
 const options = {
   root: null,
   rootMargin: '300px',
 };
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {});
-}, options);
+const observer = new IntersectionObserver(heandlerLoadMore, options);
 
 //<------------------------------------------------------------
+function heandlerLoadMore(entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+}

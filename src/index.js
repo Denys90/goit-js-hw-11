@@ -1,2 +1,1 @@
-import './js-files/card_library';
-import './js-files/fetch_api';
+import './js/card_library';

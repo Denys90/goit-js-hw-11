@@ -56,23 +56,18 @@ body {
 
 .card__info {
   display: flex;
-  gap: 40px;
+
   justify-content: center;
 }
 .card__info-item {
+  margin: 0px;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  color: rgb(181, 180, 184);
+  justify-content: center;
+  color: rgb(54, 19, 158);
 }
 
-.card__info-svg {
-  width: 20px;
-  height: 20px;
-}
-.card__info-item:hover {
-  fill: #282222;
-}
 // <-------------------------------------------
 .container {
   background-color: rgb(10, 55, 139);
@@ -108,13 +103,4 @@ body {
   border: none;
   background-color: #fff;
   cursor: pointer;
-}
-
-.search-form__png {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(10, 55, 139);
 }
