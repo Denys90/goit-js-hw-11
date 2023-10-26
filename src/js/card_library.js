@@ -59,3 +59,13 @@ async function heandlerLoadMore(entries, observer) {
 }
 
 observer.observe(guard);
+async function heandlerLoadMore(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      page += 1;
+      downloadMore(page).then(date => {
+        refs.gallery.insertAdjacentHTML('beforeend', renderCards(date.hits));
+      });
+    }
+  });
+}
