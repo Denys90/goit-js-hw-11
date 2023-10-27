@@ -7,17 +7,19 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 //<------------------------------------------------------------
 refs.form.addEventListener('submit', onSubmit);
-refs.form.addEventListener('submit', onSearchQuery);
-
+//<------------------------------------------------------------
+let page = 1;
+let searchQuery = null;
 //<------------------------------------------------------------
 
 async function onSubmit(e) {
-  const searchQuery = e.target.elements.searchQuery.value;
   e.preventDefault();
+  let page = 1;
+  searchQuery = e.target.elements.searchQuery.value;
   refs.gallery.innerHTML = '';
 
   try {
-    const imagesData = await fetchData(searchQuery);
+    const imagesData = await fetchData(searchQuery, page);
 
     if (imagesData.hits.length > 0) {
       refs.gallery.insertAdjacentHTML(
@@ -29,7 +31,7 @@ async function onSubmit(e) {
 
       const lightbox = new SimpleLightbox('.gallery a');
     } else {
-      Notiflix.Notify.failure('Something went wrong! Try again!😮');
+      return;
     }
   } catch (error) {
     throw error;
@@ -58,14 +60,19 @@ function heandlerLoadMore(entries) {
 }
 observer.observe(guard);
 //<------------------------------------------------------------
-async function onSearchQuery(e) {
-  const searchQuery = e.target.elements.searchQuery.value;
-  console.log('searchQuery:', searchQuery);
-  e.preventDefault();
+async function onSearchQuery() {
+  page++;
+
   try {
-    const response = await downloadMore(searchQuery);
-    return response;
+    const response = await fetchData(searchQuery, page);
+    console.log('here', response);
+    if (response.hits.length > 0) {
+      refs.gallery.insertAdjacentHTML('beforeend', renderCards(response.hits));
+      const lightbox = new SimpleLightbox('.gallery a');
+    } else {
+      return;
+    }
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }
