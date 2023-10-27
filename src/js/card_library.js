@@ -7,6 +7,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 //<------------------------------------------------------------
 refs.form.addEventListener('submit', onSubmit);
+refs.form.addEventListener('submit', onSearchQuery);
 
 //<------------------------------------------------------------
 
@@ -51,9 +52,20 @@ console.log(observer);
 function heandlerLoadMore(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      downloadMore(searchQuery);
+      onSearchQuery();
     }
   });
 }
 observer.observe(guard);
 //<------------------------------------------------------------
+async function onSearchQuery(e) {
+  const searchQuery = e.target.elements.searchQuery.value;
+  console.log('searchQuery:', searchQuery);
+  e.preventDefault();
+  try {
+    const response = await downloadMore(searchQuery);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
