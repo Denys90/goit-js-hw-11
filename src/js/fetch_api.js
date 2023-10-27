@@ -26,7 +26,7 @@ async function downloadMore(searchQuery) {
 
   try {
     const responce = await axios.get(
-      `${URL}?key=${MY_KEY}?q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
+      `${URL}?key=${MY_KEY}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
     );
     console.log('sdasdasd', responce);
     if (responce.data.hits.length > 0) {
