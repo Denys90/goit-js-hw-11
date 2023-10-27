@@ -51,7 +51,7 @@ console.log(observer);
 function heandlerLoadMore(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      downloadMore();
+      downloadMore(searchQuery);
     }
   });
 }

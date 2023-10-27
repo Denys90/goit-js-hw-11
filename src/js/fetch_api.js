@@ -45,16 +45,5 @@ async function downloadMore(searchQuery) {
   }
 }
 //<------------------------------------------------------------
-async function searchImages(searchQuery) {
-  try {
-    const response = await axios.get(
-      `https://pixabay.com/api/?key=${MY_KEY}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${currentPage}&per_page=${perPage}`
-    );
-    const data = response.data;
-    return data.hits;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
-//<------------------------------------------------------------
-export { fetchData, downloadMore, searchImages };
+
+export { fetchData, downloadMore };
