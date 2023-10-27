@@ -7,11 +7,12 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 //<------------------------------------------------------------
 refs.form.addEventListener('submit', onSubmit);
+
 //<------------------------------------------------------------
 
 async function onSubmit(e) {
-  e.preventDefault();
   const searchQuery = e.target.elements.searchQuery.value;
+  e.preventDefault();
   refs.gallery.innerHTML = '';
 
   try {
@@ -55,3 +56,4 @@ function heandlerLoadMore(entries) {
   });
 }
 observer.observe(guard);
+//<------------------------------------------------------------

@@ -56,15 +56,13 @@ body {
 
 .card__info {
   display: flex;
-
   justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 .card__info-item {
   margin: 0px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   color: rgb(54, 19, 158);
 }
 

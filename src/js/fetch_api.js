@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
 import refs from './refs';
+import renderCards from './renderCards';
 //<------------------------------------------------------------
 const MY_KEY = '40227453-3557d8d2139416ae0b447ea7a';
 const URL = 'https://pixabay.com/api/';
@@ -18,16 +19,16 @@ async function fetchData(searchQuery) {
   }
 }
 //<------------------------------------------------------------
-async function downloadMore() {
+async function downloadMore(searchQuery) {
   const guard = document.querySelector('.js-guard');
 
   let page = 1;
 
   try {
     const responce = await axios.get(
-      `${URL}?key=${MY_KEY}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
+      `${URL}?key=${MY_KEY}q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
     );
-    console.log(responce);
+    console.log('sdasdasd', responce);
     if (responce.data.hits.length > 0) {
       page++;
       refs.gallery.insertAdjacentHTML(
@@ -39,8 +40,21 @@ async function downloadMore() {
       observer.unobserve(guard);
     }
   } catch (error) {
+    console.log('Catch-error:', error.data);
     Notiflix.Notify.failure('Щось пішло не так в "downloadMore"');
   }
 }
 //<------------------------------------------------------------
-export { fetchData, downloadMore };
+async function searchImages(searchQuery) {
+  try {
+    const response = await axios.get(
+      `https://pixabay.com/api/?key=${MY_KEY}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${currentPage}&per_page=${perPage}`
+    );
+    const data = response.data;
+    return data.hits;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+//<------------------------------------------------------------
+export { fetchData, downloadMore, searchImages };
