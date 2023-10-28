@@ -27,10 +27,14 @@ async function onSubmit(e) {
         renderCards(imagesData.hits)
       );
 
-      Notiflix.Notify.info(`Hooray! We found ${imagesData.total} images.☝️`);
+      Notiflix.Notify.info(`Hooray! We found ${imagesData.total} images.`);
 
       const lightbox = new SimpleLightbox('.gallery a');
     } else {
+      e.target.elements.searchQuery.value = '';
+      Notiflix.Notify.info(
+        `Hooray! We found ${imagesData.total} images. Try again!`
+      );
       return;
     }
   } catch (error) {
