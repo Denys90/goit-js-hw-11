@@ -10,7 +10,7 @@ function onScroll() {
   if (offset > clientHeight) {
     refs.goTop.classList.add('go-top--show');
   } else {
-    refs.goTop.classList.remove('go-top--show');
+    refs.goTop.classList.removeтзб('go-top--show');
   }
 }
 

@@ -1,5 +1,6 @@
 import refs from './refs';
 refs.btnLight.classList.add('active');
+
 function initialState(themeName) {
   localStorage.setItem('theme', themeName);
   document.documentElement.className = themeName;

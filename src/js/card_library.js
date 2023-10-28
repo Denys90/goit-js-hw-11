@@ -40,6 +40,7 @@ async function onSubmit(e) {
   } catch (error) {
     throw error;
   }
+
   e.target.elements.searchQuery.value = '';
 }
 
@@ -52,7 +53,6 @@ const options = {
 };
 const observer = new IntersectionObserver(heandlerLoadMore, options);
 
-console.log(observer);
 //<------------------------------------------------------------
 
 function heandlerLoadMore(entries) {
@@ -69,7 +69,7 @@ async function onSearchQuery() {
 
   try {
     const response = await fetchData(searchQuery, page);
-    console.log('here', response);
+    console.log(response);
     if (response.hits.length > 0) {
       refs.gallery.insertAdjacentHTML('beforeend', renderCards(response.hits));
       const lightbox = new SimpleLightbox('.gallery a');
@@ -77,6 +77,6 @@ async function onSearchQuery() {
       return;
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }

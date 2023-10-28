@@ -12,16 +12,17 @@ export async function fetchData(searchQuery, page) {
     orientation: 'horizontal',
     safesearch: true,
     per_page: 40,
-    page: page,
+    page,
   };
-  if (!searchQuery) {
+  if (searchQuery.trim() === '') {
     return;
-  }
-  try {
-    const responce = await axios.get(`${URL}`, { params });
+  } else {
+    try {
+      const responce = await axios.get(`${URL}`, { params });
 
-    return responce.data;
-  } catch (error) {
-    Notiflix.Notify.failure('Щось пішло не так в "fetchData"');
+      return responce.data;
+    } catch (error) {
+      Notiflix.Notify.failure('Щось пішло не так в "fetchData"');
+    }
   }
 }
